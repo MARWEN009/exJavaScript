@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<body>
+    <h1>Gestion Users</h1>
+    <form action="/users/addAction" method="post">
+        UserName <input type="text" name="username" required /><br>
+        Email <input type="email" name="email" required /><br>
+        <input type="password" name="password" value="examen123 " hidden>
+
+        <input type="submit" value="Ajouter" />
+
+    </form>
+
+
+
+    <table border="1">
+        <tr>
+            <td colspan="2"> <a href="/users/recherch">Gerer Users</a></td>
+        </tr>
+        <tr>
+            <td>userName</td>
+            <td>Email</td>
+
+        </tr>
+        {% for item in doc %}
+        <tr>
+            <td>{{ item.username }}</td>
+            <td>{{ item.email }}</td>
+
+
+        </tr>
+
+        {% endfor %}
+
+
+    </table>
+
+</body>
+
+</html>
