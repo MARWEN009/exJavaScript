@@ -1,27 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> View Produit</title>
 </head>
+
 <body>
-    <h1>View Produit</h1>
+
+
+    <ul>
+        <li><a href="/produit/ajouterProduit">Ajouter</a></li>
+
+    </ul>
+    <hr>
+    <h2>recherche par marque</h2>
+    <input type="text" name="search">
+    <hr>
+    <h1>Liste Produit</h1>
     <table border="2">
         <tr>
-            <td>lib</td>
-            <td>prix</td>
-            <td>marq</td>
-            <td>action</td>
+            <th>lib</th>
+            <th>prix</th>
+            <th>marq</th>
+            <th>action</th>
         </tr>
+        {% for item in doc %}
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><a href="#">Supprimier</a>
-            <a href="#">Modifier</a></td>
+            <td>{{item.lib}}</td>
+            <td>{{item.prix}}</td>
+            <td>{{item.marq}}</td>
+            <td><a href="/produit/supp/{{item._id}}">Supprimier</a>
+                <a href="/produit/modif/{{item._id}}">Modifier</a>
+            </td>
         </tr>
+        {% endfor %}
     </table>
 </body>
+
 </html>

@@ -23,7 +23,7 @@ router.get('/recherch', function (req, res, next) {
 
 
 router.post('/search', (req, res) => {
-  users.find({username :req.body.search}, (err, doc) => {
+  users.find({ username: req.body.search }, (err, doc) => {
     if (err) throw err;
     res.render("gestionUser.twig", { doc })
   });
@@ -48,7 +48,7 @@ router.get('/modif/:id', (req, res) => {
 
 router.post('/updateAction', (req, res) => {
   var idt = req.body.id;
-  users.findById({ _id: idt }, (er, data) => {
+  users.findById({ _id: idt }, (err, data) => {
 
     data.username = req.body.username,
       data.email = req.body.email,
