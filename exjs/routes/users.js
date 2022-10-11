@@ -2,26 +2,6 @@ var express = require('express');
 const users = require('../model/users');
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.render('auth.twig');
-});
-
-router.post('/auth', function (req, res, next) {
-
-  users.find({ login: req.body.username, password: req.body.mp }, (err, data) => {
-
-    if (err) throw err;
-
-    if (data.length != 0)
-      res.render("auth.twig");
-    else
-
-      res.redirect('/users/gestionUser')
-  });
-
-});
-
 router.get('/gestionUser', (req, res) => {
   users.find((err, doc) => {
     if (err) throw err;
@@ -42,12 +22,42 @@ router.get('/recherch', function (req, res, next) {
 
 
 
-router.post('/search', (req, res)=>{
-  users.find({email : req.body.search
-  }, (err, doc)=>{
-  if(err) throw err;
-  res.render("show.twig", {doc})
+router.post('/search', (req, res) => {
+  users.find({
+    email: req.body.search
+  }, (err, doc) => {
+    if (err) throw err;
+    res.render("gestionUser.twig", { doc })
   });
-  });
+});
 
+router.get('/supp/:id', (req, res) => {
+  var idt = req.params.id;
+
+  users.findOneAndRemove({ _id: idt }, (err) => {
+
+  });
+  res.redirect('/users/gestionUser')
+});
+router.get('/modif/:id', (req, res) => {
+  var idt = req.params.id;
+  users.find({ _id: idt }, (err, doc) => {
+    if (err) throw err;
+    res.render("modif.twig", { doc })
+  });
+});
+
+
+router.post('/updateAction', (req, res) => {
+  var idt = req.body.id;
+  users.findById({ _id: idt }, (er, data) => {
+
+    data.username = req.body.username,
+      data.email = req.body.email,
+
+
+      data.save();
+  });
+  res.redirect('/users/gestionUser')
+});
 module.exports = router;

@@ -23,18 +23,20 @@
 
     <table border="1">
         <tr>
-            <td colspan="2"> <a href="/users/recherch">Gerer Users</a></td>
+            <td colspan="3"> <a href="/users/recherch">Gerer Users</a></td>
         </tr>
         <tr>
             <td>userName</td>
             <td>Email</td>
+            <td>Action</td>
 
         </tr>
         {% for item in doc %}
         <tr>
             <td>{{ item.username }}</td>
             <td>{{ item.email }}</td>
-
+            <td><a href="/users/supp/{{item._id}}">Supprimier</a>
+            <a href="/users/modif/{{item._id}}">Modifier</a></td>
 
         </tr>
 
