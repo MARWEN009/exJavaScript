@@ -14,7 +14,8 @@ router.post('/verifier', function (req, res, next) {
         if (err) throw err;
 
         if (data.length != 0)
-            res.redirect('/users/gestionUser')
+            res.render("Home.twig", {title: data[0].username});
+            
         else
             res.redirect('/authentification')
     });
