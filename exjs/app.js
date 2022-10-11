@@ -12,7 +12,7 @@ mongoose.connect("mongodb://localhost:27017/examan");
 var usersRouter = require('./routes/users');
 var authentificationRouter = require('./routes/authentification');
 
-
+var produitRouter = require('./routes/produitServices');
 
 var app = express();
 
@@ -29,6 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
 app.use('/authentification',authentificationRouter);
+
+app.use('/produit',produitRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

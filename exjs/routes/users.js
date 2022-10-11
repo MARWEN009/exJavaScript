@@ -23,9 +23,7 @@ router.get('/recherch', function (req, res, next) {
 
 
 router.post('/search', (req, res) => {
-  users.find({
-    email: req.body.search
-  }, (err, doc) => {
+  users.find({username :req.body.search}, (err, doc) => {
     if (err) throw err;
     res.render("gestionUser.twig", { doc })
   });
