@@ -51,7 +51,7 @@ router.post('/actionModif', (req, res) => {
     res.redirect('/produit');
 });
 
-router.post('/search', (req, res) => {
+router.get('/search', (req, res) => {
     produits.find({ marq: req.body.search }, (err, doc) => {
         if (err) throw err;
         res.render("viewProduit.twig", { doc });

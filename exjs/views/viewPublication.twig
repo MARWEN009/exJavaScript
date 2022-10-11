@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publication</title>
+</head>
+
+<body>
+    <h1>Ajouter Publication</h1>
+    <form action="/publication/ajouterPub" method="post">
+       Titre      :<input type="text" name="titre"><br>
+       Description:<input type="text" name="description" ><br>
+       Date       :<input type="date" name="date"><br>
+       <input type="submit" value="Ajouter">
+    </form>
+    <h1>recherche publication Titre</h1>
+    <form action="/publication/search" method="get">
+        <input type="text" name="cle" >
+        <input type="submit" value="ok">
+    </form>
+    <h1>Liste de publication</h1>
+    <table border="5">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in doc %}
+            <tr>
+                <td>{{item.titre}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.date}}</td>
+                <td><a href="/publication/supp/{{item._id}}">Supprimier</a>
+                    <a href="/publication/update/{{item._id}}">Modifier</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

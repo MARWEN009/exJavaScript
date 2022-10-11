@@ -13,6 +13,7 @@ var usersRouter = require('./routes/users');
 var authentificationRouter = require('./routes/authentification');
 
 var produitRouter = require('./routes/produitServices');
+var publicationRouter = require('./routes/publicationServices');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
 app.use('/authentification',authentificationRouter);
+app.use('/publication',publicationRouter);
 
 app.use('/produit',produitRouter);
 
